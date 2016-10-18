@@ -1,2 +1,2 @@
-# Bootcamp_afdemp
-Exercises python and html
+# Bootcamp_afdemp C#
+Exercises in python, html and C#
