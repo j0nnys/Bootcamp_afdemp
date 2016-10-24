@@ -1,1 +1,186 @@
 Python part II exercises
+
+EXERCISE 1
+
+The Greek Tax Identification Number (TIN) consists of 9 digits. The last digit is a check digit. It is calculated as follows:
+We remove the check digit, so that we are left with an 8-digit number.
+We take the 8 digits one by one, from the right to the left. We multiply each digit by the power of 2 corresponding to its position: the first from the right will be multiplied by  2121 , the second will be multiplied by  2222 , and so on.
+We take these powers and we sum them.
+We calculate the remainder of this sum by 11.
+We take this remainder and we calculate its remainder by 10. The result must equal the check digit.
+For example, let us say we have the TIN 090034337. The check digit is 7. The other digits are 09003433. We have:
+3×21+3×22+4×23+3×24+9×27=
+3×21+3×22+4×23+3×24+9×27=
+ 
+3×2+3×4+4×8+3×16+9×128=
+3×2+3×4+4×8+3×16+9×128=
+ 
+6+12+32+48+1152=1250
+6+12+32+48+1152=1250
+ 
+Then,  1250mod11=71250mod11=7  και  7mod10=77mod10=7 .
+Write a program that will ask the user for TIN and will respond whether it is correct or not. For example:
+Enter Tax Identification Number: 090034337
+Tax Identification Number valid.
+
+Enter Tax Identification Number: 090034336
+Tax Identification Number not valid.
+
+
+EXERCISE 2
+
+A simple way to check binary data is the so-called parity bit. A byte consists of 8 bits, so that we can use the last bit to check whether the previous 7 are OK. 
+We can do that by checking that the sum of the 1 bits is an even number (this is actually called even parity; we might require that the sum of 1 bits is odd, which is called odd parity). 
+For example, see the following table where we see the first 7 bits of some numbers, the number of 1 bits in them, the full 8-bit number (including the parity) and the number of 1 bits in the byte.
+First 7 bits	Number of 1s	8 bits (with parity)	Number of 1s
+0000000	           0             00000000	             0
+1010001	           3	           10100011	             4
+1101001	           4	           11010010	             4
+1111111	           7	           11111111	             8
+Write a program that asks the user for an 8-bit binary number and replies whether the parity bit checks OK. For example:
+Enter binary number: 01010101
+Parity check OK.
+
+Enter binary number: 11010101
+Parity check not OK.
+
+
+EXERCISE 3
+
+Write a program that asks the user for a 10-digit number and will then print it in two lines. The first line will contain the numbers in the odd positions and the second line the numbers in the even positions. 
+For example:
+Enter 10 digit number: 1234567890
+1 3 5 7 9
+ 2 4 6 8 0
+Take care so that the numbers line up in columns exactly as in the above example: each number must be in a column by itself.
+
+
+EXERCISE 4
+
+Write a program that asks the user for a 9-digit number and then prints it in three lines. Each line must contain three digits. 
+For example:
+Enter 9 digit number: 123456789
+1  4  7
+ 2  5  8
+  3  6  9
+Take care so that the numbers line up in columns exactly as in the above example: each number must be in a column by itself.
+
+
+EXERCISE 5
+
+To calculate Orthodox Easter Sunday for any year between 1900 and 2099, we can use the following algorithm. Suppose that  yy  is the year.
+a = y mod 4
+b = y mod 7
+c = y mod 19  
+d = (19c+15) mod 30
+e = (2a+4b−d+34) mod 7 
+month = [((d+e+114)/31)]. The symbol  [x] means the integer part of  x , that is,  x  round down towards 0. This is implemented in Python with the math.floor() function, in the math module. 
+But you may not need it, because // implements integer division in Python.
+day = ((d+e+114) mod 31 ) + 1
+The result is the day and the month in the Julian calendar. To convert it to the Gregorian calendar, which we actually use, we have to add 13 days. 
+Be careful, this may change the month.
+Write a program that asks the user for a year and then displays the month and the day of Orthodox Easter in the Gregorian calendar. For example:
+Enter year: 2011
+Day: 24 
+Month: 4
+You may check your program for 2012 (15/4), 2013 (5/5), 2014 (20/4), 2015 (12/4), 2016 (1/5), 2017 (16/4).
+
+
+EXERCISE 6
+
+Write a program that asks the user for 9 numbers: 1 with 1 digit, 1 with 2 digits, 1 with 3 digits, then again 1 with 1 digit, 1 with 2 digits, 1 with 3 digits, and then again 1 with 1 digit, 1 with 2 digits, 1 with 3 digits. 
+Then the program will print them in columns, where each column will contain 1 single digit number, 1 double digit number, and 1 triple digit number. 
+The columns will be 3 characters wide and will be separated from each other with the character +. The numbers inside the columns will be right justified. For example:
+Enter numbers: 1 10 100 2 20 200 3 30 300
+  1|  2|  3
+ 10| 20| 30
+100|200|300
+
+
+EXERCISE 7
+
+To calculate the number of days between two days we can use the following algorithm. 
+Let's say that the first date is given by  y1,  m1,  d1 and the second date is given by y2, m2, d1  (di are days,  mi are months,  yi are years).
+c1=365y1+⌊y1/4⌋−⌊y1/100⌋+⌊y1/400⌋+⌊(306m1+5)/10⌋+(d1−1). In essence, c1 is the numbers of days passed since 1/1/1 until the first date.
+c2=365y2+⌊y2/4⌋−⌊y2/100⌋+⌊y2/400⌋+⌊(306m2+5)/10⌋+(d2−1). In essence, c2 is the number of days that have passed since 1/1/1 until the second date.
+The days that have elapsed between the two days is  c2−c1.
+Write a program that asks the user to enter two dates in the form dd/mm/yyyy and will then display the number of days that have elapsed between the two days. 
+Be careful, the result must not be negative, no matter the order in which the user enters the dates. For example (15/3/-44 was the day Julius Caesar was murdered):
+Enter dates: 15/3/-44 4/11/2016
+752596 days.
+Another example (17/12/1903 was the first flight by the Wright brothers).
+Enter dates: 28/09/2016 17/12/1903
+41193 days.
+
+
+EXERCISE 8
+
+Consider a sequence of numbers that describes another sequence, as follows. The sequence in read by pairs. The first part of a pair indicates how many times we should take the second part. 
+If the length of the sequence is an odd number, then we just take the last number by itself. So, the sequence 1234567 means "1 times 2 and 3 times 4 and 5 times 6 and 7", which is:
+1×2+3×4+5×6+7
+
+Write a program that asks a user to enter a sequence of digits and then calculates the value of the sequence, as defined above. For example:
+Enter number sequence: 123456
+44
+
+Enter number sequence: 1234567
+51
+
+Enter number sequence: 1230123
+7
+
+Enter number sequence: 001234
+
+
+EXERCISE 9
+
+The Caesar cipher works by substituting each character in a message with a character that occurs  xx  places later on the alphabet, wrapping around from the beginning, if neeeded. 
+So, if  x=3x=3  then "ABIGΖΟΟ" will become "DELJCRR".
+Write a program that will ask for the number of positions to shift each character and a phrase; then it will output the phrase encrypted with the Caesar cipher. 
+You can assume that the phrase consists only of uppercase English letters (without punctuation or spaces). For example:
+Enter shift: 20
+Enter phrase: FAILBETTER
+ZUCFVYNNYL
+
+Enter shift: 10
+Enter phrase: TOBEORNOTTOBETHATISTHEQUESTION
+DYLOYBXYDDYLODRKDSCDROAEOCDSYX
+Note: this method may have been adequate in Caesar's time, but it is completely useless today.
+To be sure that your encoding is correct, write also the decryption program that takes a shift and an encrypted phrase and then produces the original plaintext.
+
+
+EXERCISE 10
+
+Write a program that asks a user to enter a sequence of 0s and 1s. Following that, it will identify the longest run of 0s or 1s of the sequence and will print an appropriate message. 
+Examples:
+Enter binary sequence: 1111000
+Longest run was ones with length: 4
+
+Enter binary sequence: 1010100000
+Longest run was zeros with length: 5
+
+Enter binary sequence: 11110000111000
+Equal longest run of ones and zeros with length: 4
+
+
+EXERCISE 11
+
+The positive integer numbers that can be written as the sum of two or more consecutive positive integers are called polite numbers. The rest are called impolite numbers. 
+The first polite numbers are: 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, ....
+It can be proven that the impolite numbers are the powers of 2. Write a program that asks the user for an upper limit and then prints out the polite numbers up to and including the limit. 
+The program should not use logarithms. The numbers should be written in rows of 10 (expect possibly for the last line). Examples:
+Enter limit: 10
+3 5 6 7 9 10
+
+Enter limit: 16
+3 5 6 7 9 10 11 12 13 14
+15
+
+Enter limit: 25
+3 5 6 7 9 10 11 12 13 14
+15 17 18 19 20 21 22 23 24 25
+
+Enter limit: 30
+3 5 6 7 9 10 11 12 13 14
+15 17 18 19 20 21 22 23 24 25
+26 27 28 29 30
