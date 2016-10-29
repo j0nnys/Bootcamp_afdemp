@@ -1,2 +1,2 @@
-# Bootcamp_afdemp Csharp#
-Exercises in python, html and C#
+# Bootcamp_afdemp C#
+Exercises in python, html, sql and C#
