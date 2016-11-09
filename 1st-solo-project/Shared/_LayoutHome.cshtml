@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Personal Website</title>
+        <meta name="description" content="Personal website of Yiani Karopoulou" />
+        <meta charset="utf-8" />
+        <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    </head>
+<body>
+    @RenderPage("~/Shared/_HeaderBlog.cshtml")
+    @RenderPage("~/Shared/_Header2.cshtml")
+    <main id="@PageData["page-id"]" class="page-content">
+        @RenderBody()
+    </main>
+    @RenderPage("~/Shared/_Footer.cshtml")
+</body>
+</html>
