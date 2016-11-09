@@ -1,0 +1,24 @@
+﻿@using Northwind;
+@using System.Data.Entity;
+@{
+    Layout = "~/_database.cshtml";
+    Page.Title = "Employees";
+
+    var db = new Northwind();
+    WebGrid grid;
+
+    if (@UrlData.Count == 1 && @UrlData[0].IsInt())
+    {
+        int id = @UrlData[0].AsInt();
+        var employees = db.Employees.Where(x => x.EmployeeID == id);
+        grid = new WebGrid(employees);
+    }
+    else
+    {
+        var employees = db.Employees;
+        grid = new WebGrid(employees);
+    }
+}
+<div>
+    @grid.GetHtml()
+</div>

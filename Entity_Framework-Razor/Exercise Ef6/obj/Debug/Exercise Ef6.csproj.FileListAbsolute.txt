@@ -1,0 +1,13 @@
+c:\users\pantelis\documents\visual studio 2015\Projects\Exercise Ef6\Exercise Ef6\bin\Debug\Exercise Ef6.exe.config
+c:\users\pantelis\documents\visual studio 2015\Projects\Exercise Ef6\Exercise Ef6\obj\Debug\Exercise Ef6.csprojResolveAssemblyReference.cache
+c:\users\pantelis\documents\visual studio 2015\Projects\Exercise Ef6\Exercise Ef6\bin\Debug\Exercise Ef6.exe
+c:\users\pantelis\documents\visual studio 2015\Projects\Exercise Ef6\Exercise Ef6\bin\Debug\Exercise Ef6.pdb
+c:\users\pantelis\documents\visual studio 2015\Projects\Exercise Ef6\Exercise Ef6\bin\Debug\EntityFramework.dll
+c:\users\pantelis\documents\visual studio 2015\Projects\Exercise Ef6\Exercise Ef6\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\pantelis\documents\visual studio 2015\Projects\Exercise Ef6\Exercise Ef6\bin\Debug\EntityFramework.xml
+c:\users\pantelis\documents\visual studio 2015\Projects\Exercise Ef6\Exercise Ef6\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\pantelis\documents\visual studio 2015\Projects\Exercise Ef6\Exercise Ef6\obj\Debug\Exercise Ef6.exe
+c:\users\pantelis\documents\visual studio 2015\Projects\Exercise Ef6\Exercise Ef6\obj\Debug\Exercise Ef6.pdb
+C:\Users\Pantelis\Documents\Visual Studio 2015\Projects\Week4\ORM\Exercise Ef6\bin\Debug\Exercise Ef6.exe.config
+C:\Users\Pantelis\Documents\Visual Studio 2015\Projects\Week4\ORM\Exercise Ef6\obj\Debug\Exercise Ef6.exe
+C:\Users\Pantelis\Documents\Visual Studio 2015\Projects\Week4\ORM\Exercise Ef6\obj\Debug\Exercise Ef6.pdb
