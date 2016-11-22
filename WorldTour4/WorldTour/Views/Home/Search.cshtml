@@ -1,0 +1,125 @@
+﻿@model WorldTour.Models.Flights
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="searchBar">
+    @RenderPage("~/Views/Home/SearchBarPartial.cshtml")
+</section>
+
+<section id="results">
+    <p>
+        Your search was for @ViewBag.Adults adults <text> and </text> @ViewBag.Children <text> children, on @ViewBag.ClassType class.</text>
+    </p>
+    @using (Html.BeginForm("Search", "Home"))
+            {
+        <table class="table table-striped">
+            <tr>
+                <th id="tableHead">Departure</th>
+                <th id="tableHead">Destination</th>
+                <th id="tableHead">Departure Time</th>
+                <th id="tableHead">Arrival Time</th>
+                <th id="tableHead">Company</th>
+                <th id="tableHead">Available Seats</th>
+                <th id="tableHead">Total Cost<br />(@ViewBag.Adults Adults/@ViewBag.Children Children)<br />(@ViewBag.ClassType Class)</th>
+                <th id="tableHead">Your Choice</th>
+            </tr>
+            @{
+                if (ViewBag.ResultsGo != null)
+                {
+                    <tr>
+                        <th colspan="8" id="tableHead">Departure Flights</th>
+                    </tr>
+
+                    int a = 0;
+                    foreach (var res in (ViewBag.ResultsGo as IEnumerable<WorldTour.Models.Flights>))
+                    {
+                        a++;
+                        decimal price;
+                        switch ((string)ViewBag.ClassType)
+                        {
+                            case "First":
+                                price = res.Starting_Price * 2;
+                                break;
+                            case "Business":
+                                price = res.Starting_Price * (decimal)1.5;
+                                break;
+                            default:
+                                price = res.Starting_Price;
+                                break;
+                        }
+                        <tr id="flightTD">
+                            <td>@res.Departure_Airport</td>
+                            <td>@res.Arrival_Airport</td>
+                            <td>@res.Departure_Date.ToString("dd/MM/yyyy h:mm tt")</td>
+                            <td>@res.Arrival_Date.ToString("dd/MM/yyyy h:mm tt")</td>
+                            <td>@res.Company_Name</td>
+                            <td>@res.Available_Seats</td>
+                            <td>@Math.Round(price * ViewBag.Adults + price * ViewBag.Children * (decimal)0.5, 2)<text>&nbsp;&euro;</text></td>
+                            <td><input type="radio" name="goFlight" value="@res.FlightID" required onclick="revealBook('bookButton')" /></td>
+                        </tr>
+                    }
+                    if (a == 0)
+                    {
+                        <tr><td>There is no available departure flight</td></tr>
+                    }
+                }
+
+                if (ViewBag.ResultsReturn != null)
+                {
+                    <tr>
+                        <th colspan="8" id="tableHead">Return Flights</th>
+                    </tr>
+
+                    int b = 0;
+                    foreach (var res in (ViewBag.ResultsReturn as IEnumerable<WorldTour.Models.Flights>))
+                    {
+                        b++;
+                        decimal price;
+                        switch ((string)ViewBag.ClassType)
+                        {
+                            case "First":
+                                price = res.Starting_Price * 2;
+                                break;
+                            case "Business":
+                                price = res.Starting_Price * (decimal)1.5;
+                                break;
+                            default:
+                                price = res.Starting_Price;
+                                break;
+                        }
+                        <tr id="flightTD">
+                            <td>@res.Departure_Airport</td>
+                            <td>@res.Arrival_Airport</td>
+                            <td>@res.Departure_Date.ToString("dd/MM/yyyy h:mm tt")</td>
+                            <td>@res.Arrival_Date.ToString("dd/MM/yyyy h:mm tt")</td>
+                            <td>@res.Company_Name</td>
+                            <td>@res.Available_Seats</td>
+                            <td>@Math.Round(price * ViewBag.Adults + price * ViewBag.Children * (decimal)0.5, 2)<text>&nbsp;&euro;</text></td>
+                            <td><input type="radio" name="returnFlight" value="@res.FlightID" required onclick="revealBook('bookButton')" /></td>
+                        </tr>
+                    }
+                    if (b == 0)
+                    {
+                        <tr><td>There is no available return flight</td></tr>
+                    }
+                }
+            }
+        </table>
+        <input type="hidden" name="classType" value="@ViewBag.ClassType" />
+        <input type="hidden" name="children" value="@ViewBag.Children" />
+                <input type="hidden" name="adults" value="@ViewBag.Adults" />
+                <input type="submit" value="Book Now!" name="bookButton" id="bookButton" hidden />
+                }
+</section>
+
+<script type="text/javascript">
+    function revealBook(id) {
+        var g = document.getElementById(id);
+        g.style.display = ((g.style.display == 'none') ? 'block' : 'block');
+    }
+</script>
+
+

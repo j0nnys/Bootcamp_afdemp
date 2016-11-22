@@ -1,0 +1,37 @@
+﻿@model WorldTour.Models.Flights
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="searchBar">
+    @RenderPage("~/Views/Home/SearchBarPartial.cshtml")
+</section>
+
+
+<section id="offers">
+    <a href="@Url.Action("Offers", "Home", new { depCity = "Athens", arrCity = "London", startDate = new DateTime(2016, 12, 8), endDate = new DateTime (2016, 12, 25) } )" title="London" class="links">
+        <img alt="London" src="@Url.Content("~/Content/London.jpg")" width="304" height="236">
+    </a>
+
+    <a href="@Url.Action("Offers", "Home", new { depCity = "Athens", arrCity = "Prague", startDate = new DateTime(2016, 11, 22), endDate = new DateTime (2016, 11, 29) } )" title="Prague" class="links">
+        <img alt="Prague" src="@Url.Content("~/Content/prague.jpg")" width="304" height="236">
+    </a>
+
+    <a href="@Url.Action("Offers", "Home", new { depCity = "Athens", arrCity = "Rome", startDate = new DateTime(2016, 12, 10), endDate = new DateTime (2016, 12, 25) } )" title="Rome" class="links">
+        <img alt="Rome" src="@Url.Content("~/Content/Rome.jpg")" width="304" height="236">
+    </a>
+
+    <a href="@Url.Action("Offers", "Home", new {depCity = "Athens", arrCity = "Rovaniemi", startDate = new DateTime(2016, 12, 24), endDate = new DateTime (2016, 12, 31) } )" title="Rovaniemi" class="links">
+        <img alt="Rovaniemi" src="@Url.Content("~/Content/robaniemi.jpg")" width="304" height="236">
+    </a>
+
+    <a href="@Url.Action("Offers", "Home", new { depCity = "Athens", arrCity = "Vienna", startDate = new DateTime(2016, 11, 28), endDate = new DateTime (2016, 12, 15) } )" title="Vienna" class="links">
+        <img alt="Vienna" src="@Url.Content("~/Content/biennh.jpg")" width="304" height="236">
+    </a>
+
+    <a href="@Url.Action("Offers", "Home", new { depCity = "Athens", arrCity = "Dubai", startDate = new DateTime(2016, 12, 1), endDate = new DateTime (2016, 12, 31) } )" title="Dubai" class="links">
+        <img alt="Dubai" src="@Url.Content("~/Content/dubai.jpg")" width="304" height="236">
+    </a>
+</section>
